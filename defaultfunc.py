@@ -30,11 +30,11 @@ def FormatTime(dma):
             hmsV.append("00")'''
 
         formated = dmaV[2] + "-" + dmaV[1] + "-" + dmaV[0]
-        
+
     #print(formated)
     return formated
 
-def ExtractData(lim, date, user, hashtag):
+def ExtractData(lim, date, usern, hashtag):
     tweetlist = []
 
     since = date[0]
@@ -44,15 +44,15 @@ def ExtractData(lim, date, user, hashtag):
     else:
         until = date[1]
 
-    if not (user == ""):
-        user += " "
+    if not (usern == ""):
+        usern += " "
     if not (hashtag == ""):
         hashtag += " "
 
 
-    for i,tweet in enumerate(sntwitter.TwitterSearchScraper(user + hashtag + 'since:' + since + 'until:' + until).get_items()):
+    for i,tweet in enumerate(sntwitter.TwitterSearchScraper(usern + hashtag + 'since:' + since + 'until:' + until).get_items()):
         if (i>lim) and (lim != -1):
             break
-        tweetlist.append([tweet.date, tweet.content, tweet.user.username])
+        tweetlist.append([tweet.date, tweet.content])
 
     return tweetlist

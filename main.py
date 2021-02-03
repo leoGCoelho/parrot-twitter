@@ -12,6 +12,7 @@
 #paste the https url and save
 
 import os
+import re
 import defaultfunc as func
 try:
     from flask import Flask, request, jsonify
@@ -42,6 +43,8 @@ def main():
         periodo = parametros['datetime_exp']
         dma = parametros['datetime_dma']
         hms = parametros['datetime-hms']
+
+    #users[0] = re.sub(r'@', r'', users[0])
     print(users)
     print(hashtags)
     print(quantidade)
@@ -82,11 +85,13 @@ def main():
                     extrated = func.ExtractData(lim, date, user, hashtags)
                     txt += "O tweet de" + extrated[2] + ' é:\n\n' + extracted[1] + '\n\nPosted in ' + extracted[0] + "\n\n"'''
 
-    extrated = func.ExtractData(lim, date, users[0], "")
-    #txt += "O tweet de" + extrated[2] + ' é:\n\n' + extracted[1] + '\n\nPosted in ' + extracted[0] + "\n\n"
-    txt = str(extrated)
-    data['fulfillmentText'] = txt
+    extracted = func.ExtractData(lim, date, "", hashtags[0])
     
+    for extr in extracted:
+        txt += "O tweet de" + ' é:\n\n' + str(extr[1]) + '\n\nPostado em ' + str(extr[0]) + "\n\n"
+        #txt = str(extrated)
+
+    data['fulfillmentText'] = txt
 
     #print(data)
 
