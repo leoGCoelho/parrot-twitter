@@ -4,15 +4,19 @@
 #flask run
 
 ## in tab 2
-# ./ nglok http PORT_VALUE
+# ./ ngrok http PORT_VALUE
 #copy the https url
 
 ## in dialogflow dashboard > fulfilment
 #enable webhook
 #paste the https url and save
 
-
-from flask import Flask, request, jsonify
+import os
+try:
+    from flask import Flask, request, jsonify
+except:
+    os.system('pip3 install -r requirements')
+    from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -23,22 +27,25 @@ pedidos = []
 def main():
     data = request.get_json(silent=True)
 
-    '''contexts = data['queryResult']['outputContexts']
+    contexts = data['queryResult']['outputContexts']
     for context in contexts:
         parametros = context['parameters']
         user = parametros['username']
-        hash = parametros['hashtag']
+        hashtag = parametros['hashtag']
         quantidade = parametros['number-integer']
-        periodo = parametros['time-period']
-        pedidos.append({ 'nome': nome, 'sabor': sabor })
-    print(username)
+        periodo = parametros['datetime_exp']
+        dma = parametros['datetime_dma']
+        hms = parametros['datetime-hms']
+    print(user)
     print(hashtag)
-    print(number-integer)
-    print(time-period)
+    print(quantidade)
+    print(periodo)
+    print(dma)
+    print(hms)
     data['fulfillmentText'] = 'O tweet é: ...'
-    '''
+    
 
-    print(data)
+    #print(data)
 
     return jsonify(data)
 
