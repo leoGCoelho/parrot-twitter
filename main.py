@@ -1,6 +1,16 @@
+## in tab 1
 #export FLASK_APP=main.py   --- macos and linux
 #set FLASK_APP=main.py   --- windows
 #flask run
+
+## in tab 2
+# ./ nglok http PORT_VALUE
+#copy the https url
+
+## in dialogflow dashboard > fulfilment
+#enable webhook
+#paste the https url and save
+
 
 from flask import Flask, request, jsonify
 
