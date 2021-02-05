@@ -25,8 +25,10 @@ def ExtractData(lim, date, usern, hashtag):
 
 
     for i,tweet in enumerate(sntwitter.TwitterSearchScraper(usern + hashtag + 'since:' + since + 'until:' + until).get_items()):
-        if (i>lim) and (lim != -1):
+        if (i>lim-1) and (lim != -1):
             break
+
+        print(i, ": ", tweet.content)
         tweetlist.append([tweet.date, tweet.content])
 
     return tweetlist

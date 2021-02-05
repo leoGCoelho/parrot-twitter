@@ -30,7 +30,7 @@ pedidos = []
 
 @app.route('/', methods=['POST'])
 def main():
-    lim = ""
+    lim = 0
     date = []
     data = request.get_json(silent=True)
 
@@ -45,18 +45,17 @@ def main():
             hms = parametros['datetime-hms']
 
         #users[0] = re.sub(r'@', r'', users[0])
-        print(users)
-        print(hashtags)
-        print(quantidade)
-        print(dma)
-        print(hms)
+        print("user: ", str(users))
+        print("hashtag: ", str(hashtags))
+        print("quant: ", str(quantidade))
+        print("dma: ", str(dma))
+        print("hms: ", str(hms))
 
-        if len(quantidade) == 0:
+        if quantidade == '':
             lim = 1
-        for quant in quantidade:
-            lim = int(quant)
-
-        #print(lim)
+        else:
+            lim = int(quantidade)
+        print(lim)
 
         date = func.SetDatetime(dma)
         print(date)
